@@ -1,0 +1,32 @@
+<%- include('../includes/navbar.ejs') %>
+
+<div class="main_container">
+    <% if(backend_resources.length == 0){ %>
+        <h1>No resources Found</h1>
+    <% } %>
+    <% if(backend_resources.length != 0){ %>
+        <%- include ("../partials/messages") %>
+        <div class="text-primary" style="width: 100%; text-align: center;"><h1>Resource</h1></div>
+    <% backend_resources.forEach(function (resource,index) { %>
+        <div class="card text-white bg-secondary mx-3 my-3" id="<%= resource._id %>" key = "<%= resource._id %>" style="width: 25rem;">
+            <div class="card-header"><h4><%= resource.title %></h4></div>
+            <div class="card-body">
+              <p class="card-text"><b>Description : </b><%= resource.description %></p>
+                <button type="button" id="<%= resource._id %>" class="btn btn-success btn-sm mx-2" onclick="window.open('<%= resource.link%>')" key = "<%= resource._id %>" >Read more</button>
+            </div>
+        </div>
+    <% }) %>
+    <% } %>
+    
+</div>
+
+<style>
+
+    .main_container{
+        margin: 50px;
+        display : flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+</style>

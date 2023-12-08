@@ -1,0 +1,157 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: rgb(53, 45, 36);
+}
+
+.slider {
+    position: relative;
+    width: 75%;
+    height: 400px;
+    margin: 30px auto 0;
+}
+
+.slider ul {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    z-index: 3;
+}
+
+.slider ul li {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #cccccc;
+    list-style: none;
+    margin: 0 10px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.slider ul li.active {
+    background-color: #b9f;
+    opacity: 0.4;
+}
+
+.slider-img img{
+    width: 100%;
+    height: 100%;
+}
+
+.slider-img div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+}
+
+.slider-img div.active {
+    opacity: 1;
+}
+
+.slider-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.slider p {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    color: #cccccc;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.slider .next {
+    right: 0;
+}
+
+
+.cal{
+    text-align: center;
+    border-radius: 3px;
+    /* margin: auto; */
+    margin-top: 2%;
+    margin-bottom: 2%;
+    height: 100px;
+    width: 100px;
+    justify-content: center;
+    /* margin-right: auto;
+    margin-left: auto; */
+}
+
+.cal, .Desc {
+    width:100%; 
+    text-align: center; 
+  }
+.Desc{
+    margin-left: 0%;
+}
+
+
+
+@media screen and (max-width: 760px) and (min-width: 500px) {
+    .slider-img img {
+        width: 100%;
+        height: 80%;
+    }
+    
+}
+
+@media screen and (max-width: 500px) and (min-width: 300px) {
+    .slider-img img {
+        width: 100%;
+        height: 60%;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .slider-img img {
+        width: 100%;
+        height: 50%;
+    }
+}
+
+ body {
+    background: #CCC;
+  }
+  .cont {
+    text-align: center;
+    border-radius: 3px;
+    margin: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    height: 120px;
+    width: 100px;
+  }
+  .month {
+    padding-bottom: 5px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    height: 25px;
+    width: 100px;
+    background: #FF7979;
+    color: black;
+  }
+  .day {
+    padding-top: 0;
+    padding-bottom: 5px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    height: 70px;
+    width: 100px;
+    background: rgb(23, 127, 153);
+    margin-bottom: 10%;
+  }
+  
+  #day {
+    font-size: 40px;
+  }

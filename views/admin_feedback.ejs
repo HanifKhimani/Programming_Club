@@ -1,0 +1,67 @@
+<body class="bg-light">
+  
+    <%- include('includes/admin_navbar.ejs') %>
+    
+    <div class="main_container">
+        <% if(feedbacks.length == 0){ %>
+            <div class="text-primary" style="width: 100%; text-align: center;"><h1>No Feedback Found</h1></div>
+        <% } %>
+        <% if(feedbacks.length != 0){ %>
+            <div class="text-primary" style="width: 100%; text-align: center;"><h1>Feedbacks</h1></div>
+        <% feedbacks.forEach(function (feedback,index) { %>
+            <div class="card text-white bg-secondary mx-3 my-3" id="<%= feedback._id %>" key = "<%= feedback._id %>" style="width: 20rem;">
+                <div class="card-header"><h4><%= feedback.name %></h4></div>
+                <div class="card-body">
+                  <p class="card-text"><b>Subject : </b><%= feedback.title %></p>
+                  <p class="card-text"><b>ID : </b><%= feedback.email.substr(0,9) %></p>
+                  <p class="card-text"><b>Date : </b><%= feedback.date %></p>
+                  <p class="card-text"><b>Messages : </b><%= feedback.feedback %></p>
+                  <button type="button" id="<%= feedback._id %>" class="btn solved btn-success btn-sm mx-2" onclick ="query_solve(this.id)" key = "<%= feedback._id %>" >Query Solved</button>
+                </div>
+            </div>
+        <% }) %>
+        <% } %>
+        
+    </div>
+    
+    <style>
+    
+        .main_container{
+            margin: 50px;
+            display : flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    
+        @media screen and (max-width: 450px) {
+            .main_container{
+                margin: 10px;
+            }
+        }
+    
+    </style>
+</body>
+
+<script>
+    
+    function query_solve(id){
+
+        const query_id = id;
+
+        const data = {
+            query_id : query_id
+        }
+
+        fetch(`/admin/feedback`, {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json",
+        },
+            body: JSON.stringify(data),
+        });
+
+        alert("Query Solved");
+        const element = document.getElementById(query_id);
+        element.remove();
+    }
+</script>

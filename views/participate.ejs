@@ -1,0 +1,59 @@
+<body class="bg-light">
+
+    <%- include('includes/admin_navbar.ejs') %>
+
+        </div>
+        <div class="table_container">
+            <% if(!participants){ %>
+                <h1 style="font-size: 3vw;">No Participation in Event <%= event_name %>
+                </h1>
+                <% } %>
+                    <% if(participants){ %>
+                        <div class="text-primary mb-5" style="width: 100%; text-align: center;">
+                            <h1>Participant of Event <%= event_name %>
+                            </h1>
+                        </div>
+                        <table class="table table-hover table-dark">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Programme</th>
+                                    <th scope="col">Batch</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% participants.forEach(function (participant,index) { %>
+                                    <tr class="table-primary">
+                                        <th scope="row">
+                                            <%= participant.email.substr(0,9) %>
+                                        </th>
+                                        <td>
+                                            <%= participant.name %>
+                                        </td>
+                                        <td>
+                                            <%= participant.programe %>
+                                        </td>
+                                        <td>
+                                            <%= participant.batch %>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                            </tbody>
+                        </table>
+        </div>
+        <% } %>
+            </div>
+
+            <style>
+                .table_container {
+                    margin: 4%;
+                }
+
+                @media screen and (max-width: 400px) {
+                    .table_container {
+                        margin: 0%;
+                    }
+                }
+            </style>
+</body>

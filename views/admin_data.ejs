@@ -1,0 +1,50 @@
+<body class="bg-light">
+  
+    <%- include('includes/admin_navbar.ejs') %>
+    
+    </div>
+    <div class="table_container">
+        <% if(!admin_data){ %>
+            <h1 style="font-size: 3vw;">No Admin till Now.</h1>
+        <% } %>
+        <% if(admin_data){ %>
+            <div class="text-primary mb-5" style="width: 100%; text-align: center;"><h1>Current Admin</h1></div>
+                <table class="table table-dark table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Programme</th>
+                        <th scope="col">Batch</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% admin_data.forEach(function (reg_admin,index) { %>
+                    <% if(reg_admin.isadmin == true){ %>
+                    <tr class="table-primary">
+                        <th scope="row"> <%= reg_admin.email.substr(0,9) %></th>
+                        <td><%= reg_admin.name %></td>
+                        <td><%= reg_admin.programe %></td>
+                        <td><%= reg_admin.batch %></td>
+                    </tr>
+                    <% } %>
+                    <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        <% } %>
+    </div>
+    
+</body>
+<style>
+.table_container{
+    margin: 4%;
+}
+
+@media screen and (max-width: 400px) {
+        .table_container{
+            margin: 0%;
+        }
+    }
+</style>
+

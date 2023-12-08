@@ -1,0 +1,25 @@
+<body class="bg-light">
+  
+    <div class="main_container">
+        <% if(!participants){ %>
+            <h1>No Participation in Event <%= event_name %> </h1>
+        <% } %>
+        <% if(participants){ %>
+            <div class="text-primary" style="width: 100%; text-align: center;"><h1>Participant of Event <%= event_name %></h1></div>
+        <% participants.forEach(function (participant,index) { %>
+            <div class="card text-white bg-secondary mx-3 my-3" id="<%= participant._id %>" key = "<%= participant._id %>" style="max-width: 20rem;">
+                <div class="card-body"> 
+                  <p class="card-text"><b>Name : </b><%= participant.name %></p>
+                  <p class="card-text"><b>Email : </b><%= participant.email %></p>
+                  <p class="card-text"><b> : </b><%= participant.duration %> Hour</p>
+                  <p class="card-text"><b>Venue : </b><%= participant.venue %></p>
+                  <p class="card-text"><%= participant.description %></p>
+                  
+                    <button type="button" id="<%= participant._id %>" class="btn btn-primary btn-sm" onclick ="register(this.id)" key = "<%= participant._id %>" >Register</button>
+                  
+                </div>
+            </div>
+        </div>
+        <% }) %>
+        <% } %>
+</body>

@@ -1,0 +1,257 @@
+<body class="bg-light">
+  
+    <%- include('includes/admin_navbar.ejs') %>
+    
+    </div>
+    <div class="table_container">
+        <% if(!user_data){ %>
+            <h1 style="font-size: 3vw;">No User Register till Now.</h1>
+        <% } %>
+        <% if(user_data){ %>
+            <div class="text-primary mb-2" style="width: 100%; text-align: center;"><h1>Registered User</h1></div>
+                <table class="table table-dark table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Programme</th>
+                        <th scope="col">Batch</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% user_data.forEach(function (reg_user,index) { %>
+                    <tr class="table-primary" id="<%= reg_user._id %>">
+                        <th scope="row"> <%= reg_user.email.substr(0,9) %></th>
+                        <td><%= reg_user.name %></td>
+                        <td><%= reg_user.programe %></td>
+                        <td><%= reg_user.batch %></td>
+                        <td><button class="btn btn-danger btn-sm rounded-0" id="<%= reg_user._id %>" key = "<%= reg_user._id %>" type="button" data-toggle="tooltip" data-placement="top" title="Delete" onclick="delete_user(this.id)"><i class="fa fa-trash"></i></button></td>
+                    </tr>
+                    <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        <% } %>
+    </div>
+    
+</body>
+
+<style>
+
+.table_container{
+    margin-left: 4%;
+    margin-right: 4%;
+}
+
+@media screen and (max-width: 500px) {
+        .table_container{
+            margin: 0%;
+        }
+}
+
+@media screen and (max-width: 500px) {
+    .table_container h1{
+        font-size: 7vw;
+        margin-top: 10px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .table{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .table td, .table th{
+        padding: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .table thead th{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .table tbody td{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .table tbody tr{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .table tbody tr td{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .table tbody tr td button{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .table tbody tr td button i{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .table tbody tr td button i.fa-trash{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .table tbody tr td button i.fa-trash:hover{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .table tbody tr td button i.fa-trash:focus{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .table tbody tr td button i.fa-trash:active{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .table tbody tr td button i.fa-trash:visited{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .table tbody tr td button i.fa-trash:disabled{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .table tbody tr td button i.fa-trash:enabled{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .table tbody tr td button i.fa-trash:default{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .table tbody tr td button i.fa-trash:valid{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .table tbody tr td button i.fa-trash:invalid{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .table tbody tr td button i.fa-trash:in-range{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .table tbody tr td button i.fa-trash:out-of-range{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .table tbody tr:hover{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .table tbody tr:hover td{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .table{
+        font-size: 0.6rem;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .table td, .table th{
+        padding: 0.4rem;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .table thead th{
+        font-size: 0.6rem;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .table tbody td{
+        font-size: 0.6rem;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .table tbody tr{
+        font-size: 0.6rem;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .table tbody tr td{
+        font-size: 0.6rem;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .table tbody tr td button{
+        font-size: 0.6rem;
+    }
+}
+
+</style>
+
+<script>
+    function delete_user(id) {
+
+        const user_id = id;
+
+        const data = {
+            user_id: user_id
+        }
+
+        fetch(`/admin/delete_user`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+
+        alert("User deleted Success");
+        const element = document.getElementById(user_id);
+        element.remove();
+    }
+
+</script>

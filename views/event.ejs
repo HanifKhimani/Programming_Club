@@ -1,0 +1,83 @@
+<body class="bg-light">
+    
+    <%- include('includes/navbar.ejs') %>
+    
+    <div class="main_container bg-light">
+        <% if(practices.length == 0){ %>
+            <h1>No Events Found</h1>
+        <% } %>
+        <% if(practices.length != 0){ %>
+            <div class="text-primary" style="width: 100%; text-align: center;"><h1>Events</h1></div>
+        <% practices.forEach(function (practice,index) { %>
+            <div class="card text-white bg-primary mx-3 my-3" id="<%= practice._id %>" key = "<%= practice._id %>" style="max-width: 20rem;">
+                <div class="card-header"><h4><%= practice.name %></h4></div>
+                <div class="card-body">
+                  <p class="card-text"><b>Date : </b><%= practice.date %></p>
+                  <p class="card-text"><b>Duration : </b><%= practice.duration %> Hour</p>
+                  <p class="card-text"><b>Venue : </b><%= practice.venue %></p>
+                  <p class="card-text"><%= practice.description %></p>
+                  
+                    <button type="button" id="<%= practice._id %>" class="btn btn-success btn-sm" onclick ="register(this.id)" key = "<%= practice._id %>" >Register</button>
+                    <button type="button" id="<%= practice._id %>" class="btn btn-success btn-sm" onclick ="deregister(this.id)" key = "<%= practice._id %>" >Deregister</button>
+                  
+                </div>
+            </div>
+        <% }) %>
+        <% } %>
+        
+    </div>
+</body>
+
+<script>
+
+    const register = (id) => {
+
+        const eventdata = {
+            event_id : id,
+            user_id : "<%= user._id %>"
+        }
+
+        fetch('/event',{
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify(eventdata),
+        })
+
+        alert("Registered Successfully");
+
+        //reload the page
+        window.location.href = "/event";
+  };
+
+  const deregister = (id) => {
+
+        const eventdata = {
+            event_id : id,
+            user_id : "<%= user._id %>"
+        }
+
+        fetch('/event/deregister',{
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify(eventdata),
+        })
+        alert("Deregistered Successfully");
+        window.location.href = "/event";
+
+  };
+  
+</script>
+
+<style>
+    .main_container{
+    margin: 50px;
+    display : flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+</style>

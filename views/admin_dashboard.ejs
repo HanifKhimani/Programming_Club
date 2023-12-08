@@ -1,0 +1,149 @@
+<%- include('includes/admin_navbar.ejs') %>
+
+    <div class="chart_container">
+        <h1 style="text-align: center;" class="text-primary font-weight-bold ">Graph of Register student by program</h1>
+        <div style="display: none;" id="data"><%= programme_data %></div>
+        <canvas id="Chartprograme" class="bg-white mt-4"></canvas>
+    </div>
+
+    <div class="chart_container">
+        <h1 style="text-align: center;" class="text-primary font-weight-bold">Graph of Register student by year</h1>
+        <div style="display: none;" id="data1"><%= year_data %></div>
+        <canvas id="Chartyear" class="bg-white mt-4"></canvas>
+    </div>
+
+    <style>
+        .chart_container {
+            margin-top: 50px;
+            margin-left: 250px;
+            margin-right: 250px;
+            margin-bottom: 100px;
+        }
+
+        @media screen and (max-width: 1250px) {
+            .chart_container {
+                margin-left: 200px;
+                margin-right: 200px;
+            }
+        }
+
+        @media screen and (max-width: 1020px) {
+            .chart_container {
+                margin-left: 160px;
+                margin-right: 160px;
+            }
+        }
+
+        @media screen and (max-width: 850px) {
+            .chart_container {
+                margin-left: 130px;
+                margin-right: 130px;
+            }
+        }
+
+        @media screen and (max-width: 700px) {
+            .chart_container {
+                margin-left: 100px;
+                margin-right: 100px;
+            }
+
+            h1 {
+                font-size: 5vw;
+            }
+        }
+
+        @media screen and (max-width: 650px) {
+            .chart_container {
+                margin-left: 50px;
+                margin-right: 50px;
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            .chart_container {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+
+            h1 {
+                font-size: 10vw;
+            }
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('Chartprograme').getContext('2d');
+        
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['M.Sc - IT','M.Sc - DS','M.Tech - EC','M.Tech - ICT','B.Tech - ICT', 'B.Tech - CS', 'B.Tech - MNC','B.Tech - EVD'],
+                datasets: [{
+                    label: 'number of register student by program',
+                    data: document.getElementById('data').innerHTML.slice(1, -1).split(','),
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        var ctx1 = document.getElementById('Chartyear').getContext('2d');
+
+        var myChart = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['1st year', '2nd year', '3rd year', '4rd year'],
+                datasets: [{
+                    label: 'number of register student by year',
+                    data: document.getElementById('data1').innerHTML.slice(1, -1).split(','),
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>

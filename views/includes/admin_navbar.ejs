@@ -1,0 +1,76 @@
+<div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-secondary p-4">
+      <div class="d-flex flex-column">
+        <div class="p-2"><a href="/admin/dashboard">Home</a></div>
+        <div class="p-2"><a href="/admin/user">Users</a></div>
+        <div class="p-2"><a href="/admin/event">Add Event</a></div>
+        <div class="p-2"><a href="/admin/event_dashboard">Event Dashboard</a></div>
+        <div class="p-2"><a href="/admin/resource/compose">Add Resource</a></div>
+        <div class="p-2"><a href="/admin/resource">Resource Dashboard</a></div>
+        <div class="p-2"><a href="/admin/add_admin">Add Admin</a></div>
+        <div class="p-2"><a href="/admin/delete_admin">Delete Admin</a></div>
+        <div class="p-2"><a href="/admin/admin_dashboard">Admin Dashboard</a></div>
+        <div class="p-2"><a href="/admin/feedback">Feedback</a></div>
+        <div class="p-2"><a href="/">Logout</a></div> 
+      </div>
+    </div>
+  </div>
+  
+  
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/admin/dashboard">Programming Club</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon">
+        </span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="/admin/dashboard">Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/admin/user">User
+            </a>
+          </li>
+          <div class="dropdown">
+            <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Resource
+            </a>
+          
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="/admin/resource/compose">Add Resource</a>
+              <a class="dropdown-item" href="/admin/resource">Resource Dashboard</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Manage Event
+            </a>
+          
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="/admin/event">Add Event</a>
+              <a class="dropdown-item" href="/admin/event_dashboard">Event Dashboard</a>
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Manage Admin
+            </a>
+          
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="/admin/add_admin">Add Admin</a>
+              <a class="dropdown-item" href="/admin/delete_admin">Delete Admin</a>
+              <a class="dropdown-item" href="/admin/admin_dashboard">Admin Dashboard</a>
+            </div>
+          </div>
+          <li class="nav-item">
+            <a class="nav-link active" href="/admin/feedback">Feedback</a>
+          </li>
+        </ul>
+        <a href="/" class="btn btn-secondary ms-5">Logout</a>
+      </div>
+    </div>
+  </nav>

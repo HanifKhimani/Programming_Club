@@ -1,0 +1,32 @@
+<%- include('../includes/admin_navbar.ejs') %>
+
+  <div class="row mt-5">
+    <div class="col-md-6 m-auto">
+      <div class="card card-body">
+        <h1 class="text-center mb-3">
+          Update Resource
+        </h1>
+        <%- include ("../partials/messages") %>
+          <form action="/admin/resource/compose/<%= adminId %>" method="post">
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" id="title" name="title" class="form-control" placeholder="Enter Resource Title"
+                value="<%= typeof title != 'undefined' ? title : '' %>" />
+            </div>
+            <div>
+              <label for="description">Description</label>
+              <textarea type="text" id="description" name="description" class="form-control"
+                value="<%= typeof description != 'undefined' ? description : '' %>"><%= description %></textarea>
+            </div>
+            <div>
+              <label for="link">Link</label>
+              <textarea type="link" id="link" name="link" class="form-control"
+                value="<%= typeof link != 'undefined' ? link : '' %>"><%=link%></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block mt-4">
+              Save Changes
+            </button>
+          </form>
+      </div>
+    </div>
+  </div>

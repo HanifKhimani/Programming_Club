@@ -1,0 +1,118 @@
+<body class="bg-light">
+
+    <%- include('includes/admin_navbar.ejs') %>
+
+        <div class="main_container">
+            <% if(events.length==0){ %>
+                <h1>No Events Found</h1>
+                <% } %>
+                    <% if(events.length !=0){ %>
+                        <div class="text-primary" style="width: 100%; text-align: center;">
+                            <h1>Events</h1>
+                        </div>
+                        <% events.forEach(function (event,index) { %>
+                            <div class="card text-white bg-secondary mx-3 my-3" id="<%= event._id %>"
+                                key="<%= event._id %>" style="max-width: 20rem;">
+                                <div class="card-header">
+                                    <h4>
+                                        <%= event.name %>
+                                    </h4>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text"><b>Date : </b>
+                                        <%= event.date %>
+                                    </p>
+                                    <p class="card-text"><b>Duration : </b>
+                                        <%= event.duration %> Hour
+                                    </p>
+                                    <p class="card-text"><b>Venue : </b>
+                                        <%= event.venue %>
+                                    </p>
+                                    <p class="card-text">
+                                        <%= event.description %>
+                                    </p>
+                                    
+                                    <div class="button">
+                                        <button type="button" id="<%= event._id %>" class="btn explore btn-success btn-sm mx-2"
+                                            onclick="participant(this.id)" key="<%= event._id %>">Participant</button>
+                                        <button type="button" id="<%= event._id %>" class="btn btn-success btn-sm mx-2"
+                                            onclick="delete_event(this.id)" key="<%= event._id %>">Delete Event</button>
+                                        <button type="button" id="<%= event._id %>" class="btn explore btn-success btn-sm mx-2"
+                                            onclick="edit_event(this.id)" key="<%= event._id %>">Edit</button>
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
+                            <% }) %>
+                                <% } %>
+
+        </div>
+
+</body>
+
+<style>
+    .main_container {
+        margin: 50px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    @media screen and (max-width: 400px) {
+        .main_container {
+            margin: 0px;
+        }
+        
+    }
+
+    @media screen and (max-width: 500px) {
+        .btn{
+            display: flex;
+            width: 33%;
+            font-size: 85%;     
+            justify-content: center; 
+            margin-bottom: 3%;      
+        }
+        .button{
+            display: flex;
+            justify-content: center;
+        }  
+        .explore{
+            padding-top: 4%;
+        }  
+    }
+</style>
+
+<script>
+    function participant(id) {
+        console.log(id)
+        window.location.href = "/admin/participate/" + `${id}`;
+    }
+
+    function delete_event(id) {
+
+        const event_id = id;
+
+        const data = {
+            event_id: event_id
+        }
+
+        fetch(`/admin/delete_event`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+
+        alert("Event deleted Success");
+        const element = document.getElementById(event_id);
+        element.remove();
+    }
+
+    function edit_event(id) {
+        console.log(id)
+        window.location.href = "/admin/edit_event/" + `${id}`;
+    }
+</script>

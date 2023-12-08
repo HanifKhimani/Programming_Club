@@ -1,0 +1,91 @@
+<%- include('../includes/admin_navbar.ejs') %>
+
+<div class="main_container">
+    <% if(backend_resources.length == 0){ %>
+        <h1>No resources Found</h1>
+    <% } %>
+    <% if(backend_resources.length != 0){ %>
+        <%- include ("../partials/messages") %>
+        <div class="text-primary" style="width: 100%; text-align: center;"><h1>Resource</h1></div>
+    <% backend_resources.forEach(function (resource,index) { %>
+        <div class="card text-white bg-secondary mx-1 my-1" id="<%= resource._id %>" key = "<%= resource._id %>" style="width: 25rem;">
+            <div class="card-header"><h4><%= resource.title %></h4></div>
+            <div class="card-body">
+              <p class="card-text"><b>Description : </b><%= resource.description %></p>
+              <div class="button">
+                <button type="button" id="<%= resource._id %>" class="btn explore btn-success btn-sm mx-1" onclick="window.open('<%= resource.link%>')" key = "<%= resource._id %>" >Explore</button>
+                <% if (is_admin || is_member) { %>
+                <button type="button" id="<%= resource._id %>" class="btn btn-success btn-sm mx-2" onclick ="delete_resource(this.id)" key = "<%= resource._id %>" >Delete resource</button>
+                <button type="button" id="<%= resource._id %>" class="btn btn-success btn-sm mx-2" onclick ="update_resource(this.id)" key = "<%= resource._id %>" >Update resource</button>
+                <% } %>
+              </div>
+            </div>
+        </div>
+    <% }) %>
+    <% } %>
+    
+</div>
+
+<style>
+
+    .main_container{
+        margin: 50px;
+        display : flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    @media screen and (max-width: 500px) {
+        .btn{
+            display: flex;
+            width: 33%;
+            font-size: 85%;     
+            justify-content: center; 
+            margin-bottom: 3%;      
+        }
+        .button{
+            display: flex;
+            justify-content: center;
+        }
+        .main_container{
+            margin: 25px;
+        }   
+        .explore{
+            padding-top: 4%;
+        }  
+    }
+
+</style>
+
+<script>
+    function perticular_resource(id){
+        // console.log(id)
+        // window.location.href = "/admin/resource/"+`${id}`;
+
+    }
+    
+    function delete_resource(id){
+
+        const resource_id = id;
+
+        const data = {
+            resource_id : resource_id
+        }
+
+        fetch(`/admin/resource/delete_resource`, {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json",
+        },
+            body: JSON.stringify(data),
+        });
+
+        alert("resource deleted Success");
+        const element = document.getElementById(resource_id);
+        element.remove();
+    }
+    function update_resource(id){
+        console.log(id)
+        window.location.href = "/admin/resource/compose/"+`${id}`;
+    }
+</script>

@@ -1,0 +1,27 @@
+<body class="bg-light"> 
+  
+  <%- include('includes/navbar.ejs') %>
+  
+    <div class="row mt-5">
+      <div class="col-md-6 m-auto">
+        <div class="card card-body">
+          <h1 class="text-center mb-3">
+             Feedback
+          </h1>
+          <%- include ("./partials/messages") %>
+          <form action="/feedback" method="POST">
+          <div class="form-group">
+              <label for="title" class="form-label mt-4">Subject</label>
+              <input type="title" class="form-control" id="title" name="title" placeholder="Enter Subject" value="<%= typeof title != 'undefined' ? title : '' %>">
+            </div>
+          <div class="form-group">
+              <label for="feedback" class="form-label mt-4">Feedback</label>
+              <textarea class="form-control" id="feedback" name="feedback" rows="3" placeholder="Write your feedback here..." value="<%= typeof feedback != 'undefined' ? feedback : '' %>"></textarea>
+            </div>
+          <button type="submit" class="btn btn-success btn-block">Submit Feedback</button>
+          </form>
+        </div>
+      </div>
+    </div>
+</body>
+  
